@@ -1,0 +1,31 @@
+# Oh My Zsh plugins
+ohmyzsh/ohmyzsh path:plugins/systemd kind:defer  # Systemd-related commands (deferred loading)
+ohmyzsh/ohmyzsh path:plugins/git kind:defer  # Git-related commands (deferred loading)
+ohmyzsh/ohmyzsh path:plugins/history-substring-search  # Substring-based history search with arrow keys
+
+# Zephyr Plugins - Core functionalities from the Zephyr framework
+mattmc3/zephyr path:plugins/color kind:defer  # Color-related functions (deferred loading)
+mattmc3/zephyr path:plugins/completion  # Completion functions
+mattmc3/zephyr path:plugins/compstyle  # Completion styles
+mattmc3/zephyr path:plugins/directory kind:defer  # Directory-related functions (deferred loading)
+mattmc3/zephyr path:plugins/environment  # Environment variable management
+mattmc3/zephyr path:plugins/helper  # Helper functions
+mattmc3/zephyr path:plugins/history  # History-related functions
+mattmc3/zephyr path:plugins/utility kind:defer  # Utility functions (deferred loading)
+
+# Powerlevel10k prompt
+romkatv/powerlevel10k
+
+# Additional Utility Plugins - Enhance command efficiency
+mdarrint/zsh-aliases-ls kind:defer  # Custom aliases for ls command (deferred loading)
+MichaelAquilina/zsh-you-should-use kind:defer  # Suggests better alternatives for commands (deferred loading)
+
+# Navigation Plugin - Improves directory navigation
+agkozak/zsh-z  # Directory jumping plugin
+
+# Advanced History Search Plugins - Enhance history navigation
+zdharma-continuum/history-search-multi-word kind:defer  # Multi-word history search with Ctrl+R (deferred loading)
+
+# Enhancement Plugins - Improve interactive Zsh experience
+zdharma-continuum/fast-syntax-highlighting kind:defer  # Syntax highlighting for commands (deferred loading)
+zsh-users/zsh-autosuggestions kind:defer  # Autosuggestions based on command history (deferred loading)
