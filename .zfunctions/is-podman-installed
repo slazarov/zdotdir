@@ -1,0 +1,4 @@
+#!/bin/zsh
+is_docker_installed() {
+    command -v docker >/dev/null
+}

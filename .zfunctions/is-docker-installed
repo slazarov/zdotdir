@@ -1,0 +1,4 @@
+#!/bin/zsh
+is_podman_installed() {
+    command -v podman >/dev/null
+}
