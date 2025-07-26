@@ -18,7 +18,7 @@ romkatv/powerlevel10k
 
 # Additional Utility Plugins - Enhance command efficiency
 mdarrint/zsh-aliases-ls kind:defer conditional:is-eza-not-installed # Custom aliases for ls command (deferred loading)
-zshell/zsh-eza kind:defer conditional:is-eza-installed
+z-shell/zsh-eza kind:defer conditional:is-eza-installed
 MichaelAquilina/zsh-you-should-use kind:defer  # Suggests better alternatives for commands (deferred loading)
 
 # Navigation Plugin - Improves directory navigation
