@@ -27,12 +27,21 @@ jobs:
             echo "Changes detected."
           fi
 
-      - name: Commit and push if updated
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+      - name: Commit changes
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add .zfunctions/_eza
           git commit -m "Auto-update _eza from eza-community" || exit 0
-          git push https://x-access-token:${GH_PAT}@github.com/slazarov/zdotdir.git HEAD:main
+          git push origin HEAD:update-eza-completion
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: update-eza-completion
+          title: "Auto-update _eza completion"
+          body: "This PR updates the _eza completion file from eza-community."
+          commit-message: "Auto-update _eza from eza-community"
