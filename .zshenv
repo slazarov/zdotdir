@@ -10,12 +10,12 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export ZDOTDIR=${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}
+
 # Some OMZ plugins use this for completion.
 export ZSH_CACHE_DIR=${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}
 
 # Create cache and completions dir and add to $fpath
 mkdir -p "$ZSH_CACHE_DIR/completions"
-(( ${fpath[(Ie)$ZSH_CACHE_DIR/completions]} )) || fpath=("$ZSH_CACHE_DIR/completions" $fpath)
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU path fpath

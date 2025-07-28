@@ -17,11 +17,8 @@ jobs:
 
       - name: Download latest _eza
         run: |
-          mkdir -p .zfunctions completions
+          mkdir -p .zfunctions
           curl -sSL https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza -o .zfunctions/_eza
-          curl -sSL https://raw.githubusercontent.com/containers/podman/main/completions/zsh/_podman -o completions/_podman
-          curl -sSL https://raw.githubusercontent.com/containers/podman/main/completions/zsh/_podman-remote -o completions/_podman-remote
-
       - name: Check for changes
         id: check_changes
         run: |
@@ -39,7 +36,5 @@ jobs:
         with:
           file-path: |
             .zfunctions/_eza
-            completions/_podman
-            completions/_podman-remote
-          commit-msg: Auto-update completion files (_eza, _podman, _podman-remote)
+          commit-msg: Auto-update completion files (_eza)
           github-token: ${{ secrets.GITHUB_TOKEN }}
