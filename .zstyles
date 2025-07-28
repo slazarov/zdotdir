@@ -9,3 +9,4 @@
 
 # zstyle ':antidote:bundle' file ${ZDOTDIR:-~}/.zplugins.txt
 zstyle ':antidote:bundle' use-friendly-names 'yes'
+zstyle ':zephyr:plugin:*' 'use-cache' yes

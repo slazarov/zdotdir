@@ -1,17 +1,17 @@
-# Oh My Zsh plugins
-ohmyzsh/ohmyzsh path:plugins/systemd kind:defer  # Systemd-related commands (deferred loading)
-ohmyzsh/ohmyzsh path:plugins/git kind:defer  # Git-related commands (deferred loading)
-ohmyzsh/ohmyzsh path:plugins/history-substring-search  # Substring-based history search with arrow keys
-
 # Zephyr Plugins - Core functionalities from the Zephyr framework
-mattmc3/zephyr path:plugins/color kind:defer  # Color-related functions (deferred loading)
 mattmc3/zephyr path:plugins/completion  # Completion functions
 mattmc3/zephyr path:plugins/compstyle  # Completion styles
+mattmc3/zephyr path:plugins/color kind:defer  # Color-related functions (deferred loading)
 mattmc3/zephyr path:plugins/directory kind:defer  # Directory-related functions (deferred loading)
 mattmc3/zephyr path:plugins/environment  # Environment variable management
 mattmc3/zephyr path:plugins/helper  # Helper functions
 mattmc3/zephyr path:plugins/history  # History-related functions
 mattmc3/zephyr path:plugins/utility kind:defer  # Utility functions (deferred loading)
+
+# Oh My Zsh plugins
+ohmyzsh/ohmyzsh path:plugins/systemd kind:defer  # Systemd-related commands (deferred loading)
+ohmyzsh/ohmyzsh path:plugins/git kind:defer  # Git-related commands (deferred loading)
+ohmyzsh/ohmyzsh path:plugins/history-substring-search  # Substring-based history search with arrow keys
 
 # Powerlevel10k prompt
 romkatv/powerlevel10k
