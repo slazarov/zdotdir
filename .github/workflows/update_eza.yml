@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write  # Ensure write permissions for updating files
-      issues: write   # Ensure write permissions for creating/updating issue comments
 
     steps:
       - name: Checkout repo
@@ -39,13 +38,3 @@ jobs:
           file-path: .zfunctions/_eza
           commit-msg: Auto-update _eza from eza-community
           github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Notify on update
-        if: steps.check_changes.outputs.changes == 'true'
-        uses: peter-evans/create-or-update-comment@v3
-        with:
-          issue-number: 1  # Replace with an existing issue number or create a new one
-          body: |
-            The `.zfunctions/_eza` file was updated with the latest version from eza-community on ${{ github.event.schedule || 'manual trigger' }} at ${{ github.event.repository.updated_at }}.
-            Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          token: ${{ secrets.GITHUB_TOKEN }}
