@@ -8,6 +8,8 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Ensure write permissions for updating files
 
     steps:
       - name: Checkout repo
@@ -19,29 +21,20 @@ jobs:
           curl -sSL https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza -o .zfunctions/_eza
 
       - name: Check for changes
+        id: check_changes
         run: |
           if git diff --quiet; then
-            echo "No changes."
-            exit 0
+            echo "No changes detected."
+            echo "changes=false" >> $GITHUB_OUTPUT
           else
             echo "Changes detected."
+            echo "changes=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: Commit changes
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .zfunctions/_eza
-          git commit -m "Auto-update _eza from eza-community" || exit 0
-          git push origin HEAD:update-eza-completion
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+      - name: Update file if changed
+        if: steps.check_changes.outputs.changes == 'true'
+        uses: test-room-7/action-update-file@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: update-eza-completion
-          title: "Auto-update _eza completion"
-          body: "This PR updates the _eza completion file from eza-community."
-          commit-message: "Auto-update _eza from eza-community"
+          file-path: .zfunctions/_eza
+          commit-msg: Auto-update _eza from eza-community
+          github-token: ${{ secrets.GITHUB_TOKEN }}
