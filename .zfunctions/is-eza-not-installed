@@ -1,4 +1,0 @@
-#!/bin/zsh
-is-eza-not-installed () {
-    ! command -v eza >/dev/null 2>&1
-}
