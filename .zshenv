@@ -16,6 +16,7 @@ export ZSH_CACHE_DIR=${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}
 
 # Create cache and completions dir and add to $fpath
 mkdir -p "$ZSH_CACHE_DIR/completions"
+(( ${fpath[(Ie)$ZSH_CACHE_DIR/completions]} )) || fpath=("$ZSH_CACHE_DIR/completions" $fpath)
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU path fpath
