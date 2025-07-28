@@ -1,3 +1,5 @@
+# Source: https://github.com/eza-community/eza/blob/main/completions/zsh/_eza
+
 #compdef eza
 
 # Save this file as _eza in /usr/local/share/zsh/site-functions or in any

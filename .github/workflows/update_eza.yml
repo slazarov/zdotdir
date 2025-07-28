@@ -1,0 +1,36 @@
+name: Auto-update _eza completion
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # every Monday at 06:00 UTC
+  workflow_dispatch:      # allows manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Download latest _eza
+      run: |
+        mkdir -p .zfunctions
+        curl -sSL https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza -o .zfunctions/_eza
+
+    - name: Check for changes
+      run: |
+        if git diff --quiet; then
+          echo "No changes."
+          exit 0
+        else
+          echo "Changes detected."
+        fi
+
+    - name: Commit and push if updated
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add .zfunctions/_eza
+        git commit -m "Auto-update _eza from eza-community"
+        git push
