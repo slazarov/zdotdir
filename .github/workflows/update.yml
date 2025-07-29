@@ -1,0 +1,50 @@
+name: update.yml
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # every Monday at 06:00 UTC
+  workflow_dispatch:      # allows manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # For updating files and pushing to branches
+      pull-requests: write  # For creating pull requests
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download completion and plugin files
+        run: |
+          mkdir -p .zfunctions plugins/git
+          curl -sSL https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza -o .zfunctions/_eza
+          curl -sSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh -o plugins/git/git.plugin.zsh
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes detected."
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected in one or more files."
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create pull request if changed
+        if: steps.check_changes.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Auto-update completion and plugin files (_eza, git.plugin.zsh)
+          branch: update-completions-${{ github.run_id }}
+          title: Auto-update completion and plugin files
+          body: |
+            This PR updates the following files:
+            - `.zfunctions/_eza` from eza-community/eza
+            - `plugins/git/git.plugin.zsh` from ohmyzsh/ohmyzsh
+            Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          labels: automated-update
+          delete-branch: true  # Delete temporary branch after PR merge
