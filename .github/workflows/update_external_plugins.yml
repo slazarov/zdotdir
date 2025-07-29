@@ -26,6 +26,9 @@ jobs:
           git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ohmyzsh
           mkdir -p plugins/git
           cp -r ohmyzsh/plugins/git/* plugins/git/
+          
+          # Clean up ohmyzsh folder
+          rm -rf ohmyzsh
 
       - name: Check for changes
         id: check_changes
