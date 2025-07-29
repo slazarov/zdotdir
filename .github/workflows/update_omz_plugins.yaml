@@ -1,4 +1,4 @@
-name: Auto-update completion and plugin files
+name: Auto-update completion and plugin files.
 
 on:
   schedule:
