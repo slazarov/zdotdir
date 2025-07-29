@@ -12,4 +12,4 @@ if [[ ! -f "$ZSH_CACHE_DIR/completions/_eza" ]]; then
 fi
 
 
-command cp "${0:h}/eza/completions/_eza" "$ZSH_CACHE_DIR/completions/_eza"
+command cp "${0:h}/completions/_eza" "$ZSH_CACHE_DIR/completions/_eza"
