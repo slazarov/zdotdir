@@ -1,3 +1,6 @@
+# Taken from OMZ podman plugin with some modifications
+# Source: https://github.com/ohmyzsh/ohmyzsh/blob/5c804257ceb5b3062b876afae290adf72c474aad/plugins/podman/podman.plugin.zsh
+
 if (( ! $+commands[podman] )); then
   return
 fi
