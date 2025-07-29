@@ -1,70 +1,50 @@
-name: Auto-sync ohmyzsh git plugin
+name: Auto-update completion and plugin files
 
 on:
   schedule:
-    - cron: '0 7 * * 1'  # every Monday at 07:00 UTC
-  workflow_dispatch:
+    - cron: '0 6 * * 1'  # every Monday at 06:00 UTC
+  workflow_dispatch:      # allows manual trigger
 
 jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
+      contents: write  # For updating files and pushing to branches
+      pull-requests: write  # For creating pull requests
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup Git
+      - name: Download completion and plugin files
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Create or switch to sync-update branch
-        run: |
-          git fetch origin sync-update || true
-          if git show-ref --quiet refs/remotes/origin/sync-update; then
-            git checkout -B sync-update origin/sync-update
-          else
-            git checkout -b sync-update
-          fi
-
-      - name: Download ohmyzsh git plugin files
-        run: |
-          mkdir -p plugins/git
+          mkdir -p .zfunctions plugins/git
+          curl -sSL https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza -o .zfunctions/_eza
           curl -sSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh -o plugins/git/git.plugin.zsh
-          curl -sSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.completion.zsh -o plugins/git/git.completion.zsh
-          curl -sSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.bash -o plugins/git/git.plugin.bash
 
       - name: Check for changes
         id: check_changes
         run: |
           if git diff --quiet; then
-            echo "No changes."
+            echo "No changes detected."
             echo "changes=false" >> $GITHUB_OUTPUT
           else
-            echo "Changes detected."
+            echo "Changes detected in one or more files."
             echo "changes=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: Commit and push changes to sync-update
+      - name: Create pull request if changed
         if: steps.check_changes.outputs.changes == 'true'
-        run: |
-          git add plugins/git
-          git commit -m "chore: sync ohmyzsh git plugin"
-          git push origin sync-update
-
-      - name: Create or update Pull Request
-        if: steps.check_changes.outputs.changes == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message:
-            chore: sync ohmyzsh git plugin
-          title: Update ohmyzsh git plugin
+          commit-message: Auto-update completion and plugin files (_eza, git.plugin.zsh)
+          branch: update-completions-${{ github.run_id }}
+          title: Auto-update completion and plugin files
           body: |
-            This PR auto-syncs the `git` plugin from ohmyzsh.
-            Source: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
-          branch: sync-update
-          delete-branch: false
+            This PR updates the following files:
+            - `.zfunctions/_eza` from eza-community/eza
+            - `plugins/git/git.plugin.zsh` from ohmyzsh/ohmyzsh
+            Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          labels: automated-update
+          delete-branch: true  # Delete temporary branch after PR merge
