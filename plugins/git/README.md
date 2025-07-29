@@ -1,5 +1,5 @@
 # git plugin
-test
+
 The git plugin provides many [aliases](#aliases) and a few useful [functions](#functions).
 
 To use it, add `git` to the plugins array in your zshrc file:
