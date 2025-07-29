@@ -11,22 +11,24 @@ mattmc3/zephyr path:plugins/utility kind:defer  # Utility functions (deferred lo
 # Oh My Zsh plugins
 ohmyzsh/ohmyzsh path:plugins/systemd kind:defer  # Systemd-related commands (deferred loading)
 ohmyzsh/ohmyzsh path:plugins/git kind:defer  # Git-related commands (deferred loading)
-ohmyzsh/ohmyzsh path:plugins/history-substring-search  # Substring-based history search with arrow keys
+zsh-users/zsh-history-substring-search
 
 # Powerlevel10k prompt
 romkatv/powerlevel10k
 
 # Additional Utility Plugins - Enhance command efficiency
 z-shell/zsh-eza kind:defer conditional:is-eza-installed
-MichaelAquilina/zsh-you-should-use kind:defer  # Suggests better alternatives for commands (deferred loading)
+MichaelAquilina/zsh-you-should-use kind:defer # Suggests better alternatives for commands (deferred loading)
 
 # Navigation Plugin - Improves directory navigation
 agkozak/zsh-z  # Directory jumping plugin
 
 # Podman/Docker
-ohmyzsh/ohmyzsh path:plugins/podman kind:defer conditional:is-podman-installed
-ohmyzsh/ohmyzsh path:plugins/docker kind:defer conditional:is-docker-installed
-ohmyzsh/ohmyzsh path:plugins/docker-compose kind:defer conditional:is-docker-installed
+$ZDOTDIR/plugins/podman kind:defer conditional:is-podman-installed
+$ZDOTDIR/plugins/docker kind:defer conditional:is-docker-installed
+$ZDOTDIR/plugins/docker-compose kind:defer conditional:is-docker-installed
+
+$ZDOTDIR/plugins/eza kind:zsh
 
 # Advanced History Search Plugins - Enhance history navigation
 zdharma-continuum/history-search-multi-word kind:defer # Multi-word history search with Ctrl+R (deferred loading)
