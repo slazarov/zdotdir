@@ -24,6 +24,7 @@ jobs:
           
           # Clone ohmyzsh and copy plugins/git directory
           git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ohmyzsh
+          rm -rf ohmyzsh/.git  # Remove .git to avoid submodule confusion
           mkdir -p plugins/git
           cp -r ohmyzsh/plugins/git/* plugins/git/
           
