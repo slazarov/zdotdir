@@ -8,8 +8,7 @@ mattmc3/zephyr path:plugins/helper  # Helper functions
 mattmc3/zephyr path:plugins/history  # History-related functions
 mattmc3/zephyr path:plugins/utility kind:defer  # Utility functions (deferred loading)
 
-# Oh My Zsh plugins
-ohmyzsh/ohmyzsh path:plugins/systemd kind:defer  # Systemd-related commands (deferred loading)
+$ZDOTDIR/plugins/systemd kind:defer # Systemd-related commands (deferred loading)
 $ZDOTDIR/plugins/git kind:defer # Git-related commands (deferred loading)
 zsh-users/zsh-history-substring-search
 

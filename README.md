@@ -25,3 +25,5 @@ Docker: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
 Docker compose:https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker-compose
 
 Eza: https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza (auto-updates)
+
+Systemd: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/systemd/systemd.plugin.zsh
