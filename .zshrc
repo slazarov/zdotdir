@@ -5,6 +5,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Ensure completions directory exists
+mkdir -p "$__zsh_cache_dir/completions"
+
+# Add completions folder to $fpath, if not already there
+(( ${fpath[(Ie)$__zsh_cache_dir/completions]} )) || fpath=("$__zsh_cache_dir/completions" $fpath)
+
 # Lazy-load (autoload) Zsh function files from a directory.
 ZFUNCDIR=${ZDOTDIR:-$HOME}/.zfunctions
 fpath=($ZFUNCDIR $fpath)
