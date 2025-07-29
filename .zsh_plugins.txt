@@ -24,10 +24,11 @@ MichaelAquilina/zsh-you-should-use kind:defer # Suggests better alternatives for
 agkozak/zsh-z  # Directory jumping plugin
 
 # Podman/Docker
-$ZDOTDIR/plugins/podman kind:zsh kind:defer conditional:is-podman-installed
+$ZDOTDIR/plugins/podman kind:zsh conditional:is-podman-installed
+$ZDOTDIR/plugins/docker kind:zsh conditional:is-docker-installed
+$ZDOTDIR/plugins/docker-compose kind:zsh conditional:is-docker-installed
+#ohmyzsh/ohmyzsh path:plugins/docker-compose kind:defer conditional:is-docker-installed
 #ohmyzsh/ohmyzsh path:plugins/podman kind:defer conditional:is-podman-installed
-$ZDOTDIR/plugins/ocker kind:defer conditional:is-docker-installed
-ohmyzsh/ohmyzsh path:plugins/docker-compose kind:defer conditional:is-docker-installed
 
 # Advanced History Search Plugins - Enhance history navigation
 zdharma-continuum/history-search-multi-word kind:defer # Multi-word history search with Ctrl+R (deferred loading)
