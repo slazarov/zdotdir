@@ -26,7 +26,7 @@ agkozak/zsh-z  # Directory jumping plugin
 # Podman/Docker
 $ZDOTDIR/plugins/podman kind:zsh kind:defer conditional:is-podman-installed
 #ohmyzsh/ohmyzsh path:plugins/podman kind:defer conditional:is-podman-installed
-ohmyzsh/ohmyzsh path:plugins/docker kind:defer conditional:is-docker-installed
+$ZDOTDIR/plugins/ocker kind:defer conditional:is-docker-installed
 ohmyzsh/ohmyzsh path:plugins/docker-compose kind:defer conditional:is-docker-installed
 
 # Advanced History Search Plugins - Enhance history navigation
