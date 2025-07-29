@@ -18,7 +18,7 @@ romkatv/powerlevel10k
 
 # Additional Utility Plugins - Enhance command efficiency
 z-shell/zsh-eza kind:defer conditional:is-eza-installed
-MichaelAquilina/zsh-you-should-use kind:defer  # Suggests better alternatives for commands (deferred loading)
+MichaelAquilina/zsh-you-should-use kind:defer # Suggests better alternatives for commands (deferred loading)
 
 # Navigation Plugin - Improves directory navigation
 agkozak/zsh-z  # Directory jumping plugin
