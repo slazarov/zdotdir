@@ -1,7 +1,7 @@
 # Git version checking
 autoload -Uz is-at-least
 git_version="${${(As: :)$(git version 2>/dev/null)}[3]}"
-#test
+
 #
 # Functions Current
 # (sorted alphabetically by function name)
