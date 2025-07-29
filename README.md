@@ -15,3 +15,13 @@ echo ". $ZDOTDIR/.zshenv" > ~/.zshenv
 # start a new zsh session
 zsh
 ```
+# Plugins folder sources
+Git: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git (auto-updates)
+
+Podman: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/podman
+
+Docker: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
+
+Docker compose:https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker-compose
+
+Eza: https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza (auto-updates)
