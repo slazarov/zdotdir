@@ -1,19 +1,16 @@
-# Taken from OMZ podman plugin with some modifications
-# Source: https://github.com/ohmyzsh/ohmyzsh/blob/5c804257ceb5b3062b876afae290adf72c474aad/plugins/podman/podman.plugin.zsh
-
 if (( ! $+commands[podman] )); then
   return
 fi
 
 # If the completion file doesn't exist yet, we need to autoload it and
 # bind it to `podman`. Otherwise, compinit will have already done that.
-if [[ ! -f "$__zsh_cache_dir/completions/_podman" ]]; then
+if [[ ! -f "$ZSH_CACHE_DIR/completions/_podman" ]]; then
   typeset -g -A _comps
   autoload -Uz _podman
   _comps[podman]=_podman
 fi
 
-podman completion zsh 2> /dev/null >| "$__zsh_cache_dir/completions/_podman" &|
+podman completion zsh 2> /dev/null >| "$ZSH_CACHE_DIR/completions/_podman" &|
 
 alias pbl='podman build'
 alias pcin='podman container inspect'

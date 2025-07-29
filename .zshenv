@@ -16,6 +16,9 @@ export ZDOTDIR=${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}
 : ${__zsh_user_data_dir:=${XDG_DATA_HOME:-$HOME/.local/share}/zsh}
 : ${__zsh_cache_dir:=${XDG_CACHE_HOME:-$HOME/.cache}/zsh}
 
+# There are some OMZ plugins with different alias
+ZSH_CACHE_DIR=$__zsh_cache_dir
+
 # Ensure path arrays do not contain duplicates.
 typeset -gU path fpath
 
