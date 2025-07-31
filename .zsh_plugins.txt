@@ -16,16 +16,16 @@ zsh-users/zsh-history-substring-search
 romkatv/powerlevel10k
 
 # Additional Utility Plugins - Enhance command efficiency
-z-shell/zsh-ezaconditional:is-eza-installed
+z-shell/zsh-eza conditional:is-eza-installed
 MichaelAquilina/zsh-you-should-use # Suggests better alternatives for commands (deferred loading)
 
 # Navigation Plugin - Improves directory navigation
 agkozak/zsh-z # Directory jumping plugin
 
 # Podman/Docker
-$ZDOTDIR/plugins/podmanconditional:is-podman-installed
-$ZDOTDIR/plugins/dockerconditional:is-docker-installed
-$ZDOTDIR/plugins/docker-composeconditional:is-docker-installed
+$ZDOTDIR/plugins/podman conditional:is-podman-installed
+$ZDOTDIR/plugins/docker conditional:is-docker-installed
+$ZDOTDIR/plugins/docker-compose conditional:is-docker-installed
 
 $ZDOTDIR/plugins/eza kind:zsh
 
