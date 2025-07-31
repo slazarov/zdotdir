@@ -34,4 +34,4 @@ zdharma-continuum/history-search-multi-word # Multi-word history search with Ctr
 
 # Enhancement Plugins - Improve interactive Zsh experience
 zdharma-continuum/fast-syntax-highlighting # Syntax highlighting for commands (deferred loading)
-zsh-users/zsh-autosuggestions# Autosuggestions based on command history (deferred loading)
+zsh-users/zsh-autosuggestions # Autosuggestions based on command history (deferred loading)
