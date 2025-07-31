@@ -21,7 +21,7 @@ autoload -Uz $ZFUNCDIR/*(.:t)
 
 # Clone antidote if necessary.
 if [[ ! -d ${ZDOTDIR:-$HOME}/.antidote ]]; then
-  git clone https://github.com/mattmc3/antidote ${ZDOTDIR:-$HOME}/.antidote
+  git clone --branch main --depth 1 https://github.com/mattmc3/antidote ${ZDOTDIR:-$HOME}/.antidote
 fi
 
 # Create an amazing Zsh config using antidote plugins.
