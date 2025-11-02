@@ -1,15 +1,15 @@
 # Zephyr Plugins - Core functionalities from the Zephyr framework
 mattmc3/zephyr path:plugins/completion # Completion functions
 mattmc3/zephyr path:plugins/compstyle # Completion styles
-mattmc3/zephyr path:plugins/color # Color-related functions (deferred loading)
-mattmc3/zephyr path:plugins/directory # Directory-related functions (deferred loading)
+mattmc3/zephyr path:plugins/color # Color-related functions
+mattmc3/zephyr path:plugins/directory # Directory-related functions
 mattmc3/zephyr path:plugins/environment # Environment variable management
 mattmc3/zephyr path:plugins/helper # Helper functions
 mattmc3/zephyr path:plugins/history # History-related functions
-mattmc3/zephyr path:plugins/utility # Utility functions (deferred loading)
+mattmc3/zephyr path:plugins/utility # Utility functions
 
-$ZDOTDIR/plugins/systemd # Systemd-related commands (deferred loading)
-$ZDOTDIR/plugins/git # Git-related commands (deferred loading)
+$ZDOTDIR/plugins/systemd conditional:is-linux # Systemd-related commands (Linux only)
+$ZDOTDIR/plugins/git # Git-related commands
 zsh-users/zsh-history-substring-search
 
 # Powerlevel10k prompt
@@ -17,7 +17,7 @@ romkatv/powerlevel10k
 
 # Additional Utility Plugins - Enhance command efficiency
 z-shell/zsh-eza conditional:is-eza-installed
-MichaelAquilina/zsh-you-should-use # Suggests better alternatives for commands (deferred loading)
+MichaelAquilina/zsh-you-should-use # Suggests better alternatives for commands
 
 # Navigation Plugin - Improves directory navigation
 agkozak/zsh-z # Directory jumping plugin
@@ -30,8 +30,8 @@ $ZDOTDIR/plugins/docker-compose conditional:is-docker-installed
 $ZDOTDIR/plugins/eza kind:zsh
 
 # Advanced History Search Plugins - Enhance history navigation
-zdharma-continuum/history-search-multi-word # Multi-word history search with Ctrl+R (deferred loading)
+zdharma-continuum/history-search-multi-word # Multi-word history search with Ctrl+R
 
 # Enhancement Plugins - Improve interactive Zsh experience
-zdharma-continuum/fast-syntax-highlighting # Syntax highlighting for commands (deferred loading)
-zsh-users/zsh-autosuggestions # Autosuggestions based on command history (deferred loading)
+zdharma-continuum/fast-syntax-highlighting # Syntax highlighting for commands
+zsh-users/zsh-autosuggestions # Autosuggestions based on command history
