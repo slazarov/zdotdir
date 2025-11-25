@@ -46,12 +46,12 @@ fi
   # Check if we're using docker-compose (v1) or docker compose (v2)
   if [[ -n $commands[docker-compose] ]]; then
     # For docker-compose v1, use the bundled completion file
-    command cp "${0:h}/docker-compose/completions/_docker-compose" "$ZSH_CACHE_DIR/completions/_docker-compose"
+    command cp "${0:h}/completions/_docker-compose" "$ZSH_CACHE_DIR/completions/_docker-compose"
   elif [[ -n $commands[docker] ]]; then
     # For docker compose (v2), check Docker version and use completion if supported
     if zstyle -t ':omz:plugins:docker-compose' legacy-completion || \
        ! is-at-least 23.0.0 ${${(s:,:z)"$(command docker --version)"}[3]}; then
-         command cp "${0:h}/docker-compose/completions/_docker-compose" "$ZSH_CACHE_DIR/completions/_docker-compose"
+         command cp "${0:h}/completions/_docker-compose" "$ZSH_CACHE_DIR/completions/_docker-compose"
        else
          # Generate completion for `docker compose` if supported
          command docker completion zsh | tee "$ZSH_CACHE_DIR/completions/_docker-compose" > /dev/null
