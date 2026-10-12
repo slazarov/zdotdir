@@ -19,6 +19,12 @@ export ZDOTDIR=${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}
 # There are some OMZ plugins with different alias
 ZSH_CACHE_DIR=$__zsh_cache_dir
 
+# Debian/Ubuntu's /etc/zsh/zshrc runs compinit unless this is set. Zephyr runs
+# compinit -i itself, so skip the global one (it also prompts about insecure
+# dirs, e.g. Linuxbrew completions owned by another user). Set here, not in
+# ~/.zshenv, because nested shells inherit ZDOTDIR and only read this file.
+skip_global_compinit=1
+
 # Ensure path arrays do not contain duplicates.
 typeset -gU path fpath
 
