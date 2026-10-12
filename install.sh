@@ -234,7 +234,7 @@ if [ "$reset" = 1 ]; then
   info "Removing plugin caches"
   rm -rf "$zd/.antidote" "$zd/.zsh_plugins.zsh" "$HOME/.cache/antidote" \
     "$HOME/Library/Caches/antidote" "$HOME/.cache/zsh"
-  rm -f "$zd"/.zcompdump* "$HOME"/.cache/p10k-*
+  rm -rf "$zd"/.zcompdump* "$HOME"/.cache/p10k-*
 fi
 
 # Clone, or update an existing clone of this repo.
