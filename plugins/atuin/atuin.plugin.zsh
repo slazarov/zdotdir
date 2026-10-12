@@ -8,6 +8,10 @@ if (( ! $+commands[atuin] )); then
   return
 fi
 
+# Search bar at the top, results listed downward (same as `invert = true` in
+# ~/.config/atuin/config.toml). Set ATUIN_INVERT=false beforehand to opt out.
+export ATUIN_INVERT=${ATUIN_INVERT:-true}
+
 () {
   local cache="$ZSH_CACHE_DIR/atuin-init.zsh"
   if [[ ! -s "$cache" || "${commands[atuin]:A}" -nt "$cache" ]]; then
