@@ -2,7 +2,11 @@
 #
 # This tests that the (old) docker-compose command is in $PATH and that
 # it resolves to an existing executable file if it's a symlink.
-
+if [[ -n "$commands[docker-compose]" && -f "${commands[docker-compose]:A}" ]]; then
+  dccmd='docker-compose'
+else
+  dccmd='docker compose'
+fi
 
 alias dco="$dccmd"
 alias dcb="$dccmd build"
@@ -23,6 +27,8 @@ alias dclF="$dccmd logs -f --tail 0"
 alias dcpull="$dccmd pull"
 alias dcstart="$dccmd start"
 alias dck="$dccmd kill"
+
+unset dccmd
 
 # Check if docker-compose or docker compose command is available
 if (( ! $+commands[docker-compose] && ! $+commands[docker] )); then

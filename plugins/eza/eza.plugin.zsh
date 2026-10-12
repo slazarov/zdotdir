@@ -4,12 +4,15 @@
 0="${${(M)0:#/*}:-$PWD/$0}"
 
 # If the completion file doesn't exist yet, we need to autoload it and
-# bind it to `docker`. Otherwise, compinit will have already done that.
+# bind it to `eza`. Otherwise, compinit will have already done that.
 if [[ ! -f "$ZSH_CACHE_DIR/completions/_eza" ]]; then
   typeset -g -A _comps
-  autoload -Uz _docker
+  autoload -Uz _eza
   _comps[eza]=_eza
 fi
 
-
-command cp "${0:h}/completions/_eza" "$ZSH_CACHE_DIR/completions/_eza"
+# Copy the bundled completion when it is missing or outdated in the cache.
+# (In zsh, `a -nt b` is false when b doesn't exist.)
+if [[ ! -f "$ZSH_CACHE_DIR/completions/_eza" || "${0:h}/completions/_eza" -nt "$ZSH_CACHE_DIR/completions/_eza" ]]; then
+  command cp "${0:h}/completions/_eza" "$ZSH_CACHE_DIR/completions/_eza"
+fi

@@ -27,6 +27,10 @@ jobs:
           rm -rf ohmyzsh/.git  # Remove .git to avoid submodule confusion
           mkdir -p plugins/git
           cp -r ohmyzsh/plugins/git/* plugins/git/
+
+          # OMZ lib files the vendored plugins depend on (git_current_branch, clipcopy, ...)
+          mkdir -p plugins/omz-lib
+          cp ohmyzsh/lib/git.zsh ohmyzsh/lib/clipboard.zsh plugins/omz-lib/
           
           # Clean up ohmyzsh folder
           rm -rf ohmyzsh
@@ -44,16 +48,17 @@ jobs:
 
       - name: Create pull request if changed
         if: steps.check_changes.outputs.changes == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Auto-update completion and plugin files (_eza, git plugin)
+          commit-message: Auto-update completion and plugin files (_eza, git plugin, omz lib)
           branch: update-completions-${{ github.run_id }}
           title: Auto-update completion and plugin files
           body: |
             This PR updates the following:
             - `plugins/eza/completions/_eza` from eza-community/eza
             - `plugins/git/*` from ohmyzsh/ohmyzsh (all files in plugins/git directory)
+            - `plugins/omz-lib/{git,clipboard}.zsh` from ohmyzsh/ohmyzsh lib
             Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           labels: automated-update
           delete-branch: true  # Delete temporary branch after PR merge

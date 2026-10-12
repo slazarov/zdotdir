@@ -1,4 +1,2 @@
 #!/bin/zsh
-is_eza_installed() {
-    command -v eza >/dev/null 2>&1
-}
+command -v eza >/dev/null

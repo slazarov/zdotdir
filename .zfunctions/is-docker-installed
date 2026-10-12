@@ -1,4 +1,2 @@
 #!/bin/zsh
-is_podman_installed() {
-    command -v podman >/dev/null
-}
+command -v docker >/dev/null

@@ -22,11 +22,18 @@ ZSH_CACHE_DIR=$__zsh_cache_dir
 # Ensure path arrays do not contain duplicates.
 typeset -gU path fpath
 
-# Set the list of directories that zsh searches for commands.
-path=(
+# Directories that go before everything else in $path. Zephyr's environment
+# plugin rebuilds $path as ($prepath homebrew /usr/local $path) and reuses this.
+typeset -ga prepath=(
   $HOME/{,s}bin(N)
   $HOME/.local/{,s}bin(N)
+  $HOME/.cargo/bin(N)
   /home/linuxbrew/.linuxbrew/{,s}bin(N)
+)
+
+# Set the list of directories that zsh searches for commands.
+path=(
+  $prepath
   /opt/{homebrew,local}/{,s}bin(N)
   /usr/local/{,s}bin(N)
   $path

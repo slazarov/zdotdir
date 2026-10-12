@@ -16,26 +16,16 @@ ZFUNCDIR=${ZDOTDIR:-$HOME}/.zfunctions
 fpath=($ZFUNCDIR $fpath)
 autoload -Uz $ZFUNCDIR/*(.:t)
 
+# Used by the docker and docker-compose plugins (normally provided by OMZ's lib).
+autoload -Uz is-at-least
+
 # Set any zstyles you might use for configuration.
 [[ ! -f ${ZDOTDIR:-$HOME}/.zstyles ]] || source ${ZDOTDIR:-$HOME}/.zstyles
 
 # Clone antidote if necessary.
 if [[ ! -d ${ZDOTDIR:-$HOME}/.antidote ]]; then
-  git clone --branch main --depth 1 https://github.com/mattmc3/antidote ${ZDOTDIR:-$HOME}/.antidote
+  git clone --quiet --branch main --depth 1 https://github.com/mattmc3/antidote ${ZDOTDIR:-$HOME}/.antidote
 fi
-
-# Create an amazing Zsh config using antidote plugins.
-source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
-antidote load
-
-# Source anything in .zshrc.d.
-for _rc in ${ZDOTDIR:-$HOME}/.zshrc.d/*.zsh; do
-  # Ignore tilde files.
-  if [[ $_rc:t != '~'* ]]; then
-    source "$_rc"
-  fi
-done
-unset _rc
 
 # Set the root name of the plugins files (.txt and .zsh) antidote will use.
 zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins
@@ -54,6 +44,15 @@ fi
 
 # Source your static plugins file.
 source ${zsh_plugins}.zsh
+
+# Source anything in .zshrc.d (after plugins, so these can override them).
+for _rc in ${ZDOTDIR:-$HOME}/.zshrc.d/*.zsh(N); do
+  # Ignore tilde files.
+  if [[ $_rc:t != '~'* ]]; then
+    source "$_rc"
+  fi
+done
+unset _rc
 
 # To customize prompt, run `p10k configure` or edit .p10k.zsh.
 [[ ! -f ${ZDOTDIR:-$HOME}/.p10k.zsh ]] || source ${ZDOTDIR:-$HOME}/.p10k.zsh

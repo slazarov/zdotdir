@@ -9,8 +9,8 @@ mattmc3/zephyr path:plugins/history # History-related functions
 mattmc3/zephyr path:plugins/utility # Utility functions
 
 $ZDOTDIR/plugins/systemd conditional:is-linux # Systemd-related commands (Linux only)
+$ZDOTDIR/plugins/omz-lib # OMZ lib functions used by the OMZ plugins below
 $ZDOTDIR/plugins/git # Git-related commands
-zsh-users/zsh-history-substring-search
 
 # Powerlevel10k prompt
 romkatv/powerlevel10k
@@ -27,11 +27,12 @@ $ZDOTDIR/plugins/podman conditional:is-podman-installed
 $ZDOTDIR/plugins/docker conditional:is-docker-installed
 $ZDOTDIR/plugins/docker-compose conditional:is-docker-installed
 
-$ZDOTDIR/plugins/eza kind:zsh
-
-# Advanced History Search Plugins - Enhance history navigation
-zdharma-continuum/history-search-multi-word # Multi-word history search with Ctrl+R
+$ZDOTDIR/plugins/eza conditional:is-eza-installed
 
 # Enhancement Plugins - Improve interactive Zsh experience
 zdharma-continuum/fast-syntax-highlighting # Syntax highlighting for commands
 zsh-users/zsh-autosuggestions # Autosuggestions based on command history
+zsh-users/zsh-history-substring-search # Must load after syntax highlighting
+
+# History search with Ctrl+R (must load after zsh-autosuggestions to add its suggestion strategy)
+$ZDOTDIR/plugins/atuin conditional:is-atuin-installed
