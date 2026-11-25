@@ -183,6 +183,10 @@ install_packages() {
         warn "Homebrew not found, skipping eza"
       fi
     fi
+    if has brew && ! brew list antidote >/dev/null 2>&1; then
+      info "Installing antidote with Homebrew"
+      brew install antidote || warn "brew install antidote failed (.zshrc will git-clone it instead)"
+    fi
     install_atuin
     return 0
   fi

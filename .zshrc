@@ -22,9 +22,16 @@ autoload -Uz is-at-least
 # Set any zstyles you might use for configuration.
 [[ ! -f ${ZDOTDIR:-$HOME}/.zstyles ]] || source ${ZDOTDIR:-$HOME}/.zstyles
 
-# Clone antidote if necessary.
-if [[ ! -d ${ZDOTDIR:-$HOME}/.antidote ]]; then
-  git clone --quiet --branch main --depth 1 https://github.com/mattmc3/antidote ${ZDOTDIR:-$HOME}/.antidote
+# Use Homebrew's antidote if installed (kept current by brew upgrade / brew autoupdate).
+# The opt/ symlink always points at the latest installed version.
+# Otherwise fall back to a git clone in $ZDOTDIR (e.g. Linux without brew).
+for _antidote_home in {${HOMEBREW_PREFIX:-/opt/homebrew},/usr/local,/home/linuxbrew/.linuxbrew}/opt/antidote/share/antidote ''; do
+  [[ -d $_antidote_home/functions ]] && break
+done
+if [[ -z $_antidote_home ]]; then
+  _antidote_home=${ZDOTDIR:-$HOME}/.antidote
+  [[ -d $_antidote_home ]] ||
+    git clone --quiet --branch main --depth 1 https://github.com/mattmc3/antidote $_antidote_home
 fi
 
 # Set the root name of the plugins files (.txt and .zsh) antidote will use.
@@ -34,8 +41,9 @@ zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins
 [[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
 
 # Lazy-load antidote from its functions directory.
-fpath=(${ZDOTDIR:-$HOME}/.antidote/functions $fpath)
+fpath=($_antidote_home/functions $fpath)
 autoload -Uz antidote
+unset _antidote_home
 
 # Generate a new static file whenever .zsh_plugins.txt is updated.
 if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
