@@ -44,3 +44,12 @@ path=(
   /usr/local/{,s}bin(N)
   $path
 )
+
+# Source anything in .zshenv.d (environment variables, one file per topic).
+for _env in ${ZDOTDIR:-$HOME}/.zshenv.d/*.zsh(N); do
+  # Ignore tilde files.
+  if [[ $_env:t != '~'* ]]; then
+    source "$_env"
+  fi
+done
+unset _env
